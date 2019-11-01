@@ -7,17 +7,15 @@
             fit="fill"
             width="150px"
             height="150px"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            :src="info.avatar"
           />
         </van-col>
-
         <van-col span="24" align="center">
-
+          {{info.name}}
         </van-col>
       </van-row>
-      <van-cell title="地址" is-link url="/address" />
+      <van-cell title="地址" @click="toaddress" is-link />
       <van-button type="default" size="large" @click="tuichudenglu">退出登录</van-button>
-
   </div>
 </template>
 
@@ -26,22 +24,26 @@ import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 export default {
   data(){
     return {
-      user:{}
-    }
+        user:{}
+      }
   },
   created(){
-
   },
   computed:{
-    ...mapState("category",["vcategory"])
+    ...mapState("denglu",["token","info"]),
+    // ...mapState("category",["vcategory"])
   },
   methods:{
-    ...mapActions("bendishujuku",["chaxun","shanchu"]),
+    ...mapActions("denglu",["login","tokeninfo","logout"]),
+    // 获取用户信息
+    toaddress(){
+      this.$router.push({path:"/address"})
+    },
     // 退出登录
     tuichudenglu(){
+      this.logout(),
       this.$router.push({path:"/"})
     },
-
   }
 }
 </script>

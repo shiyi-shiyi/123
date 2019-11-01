@@ -12,15 +12,19 @@
 </template>
 
 <script>
+import {getToken,setToken,removeToken} from '../../utils/auth'
+
 export default {
   data(){
     return {
       active:0
     }
   },
+  created(){
+
+  },
   methods:{
     changehandler(path){
-      // alert(path)
       this.$router.push({path})
 
     }

@@ -27,31 +27,31 @@
 <script>
 
 import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
+import {getToken,setToken,removeToken} from '../utils/auth'
+
 export default {
 
   data(){
     return {
       yonghu:{
          "type": "customer",
-      }
+      },
     }
   },
   create(){
-    // ...mapState()
-
+    
   },
   computed:{
+    ...mapState("denglu",["token"])
 
   },
   methods:{
-    ...mapActions("denglu",["dlhandler","tokenhandler"]),
-
-    ...mapActions("bendishujuku",["chuangjian","chaxun","xiugai","shanchu"]),
+    ...mapActions("denglu",["login","info"]),
 
     dl(){
-      this.dlhandler(this.yonghu)
-      .then((res)=>{
-        if(res!==null){
+      this.login(this.yonghu)
+      .then((re)=>{
+        if(re){
           this.$router.push({path:"/buju/shouye"})
         }else{
           alert("cuowu")

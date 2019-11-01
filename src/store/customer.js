@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import {post_array,get,post} from "../http/axios.js"
 export default {
@@ -8,6 +9,7 @@ export default {
         },
         titles:"",
         dialogFormVisible:false,
+        allcuste:{},
     },
     getters:{
 
@@ -15,6 +17,9 @@ export default {
     mutations:{
         xiugaicustomer(state,customer){
             state.customer = customer;
+        },
+        allcustomermutations(state,customer){
+            state.allcuste = customer;
         },
         showmodel(state){
             state.dialogFormVisible=true
@@ -35,6 +40,13 @@ export default {
             let res = await post("/customer/query",form)
             context.commit("xiugaicustomer",res.data)
         },
+        // 查找所有顾客
+        async allcustomer(context){
+            let res = await get("/customer/findAll")
+            context.commit("allcustomermutations",res.data)
+            return res.data
+        },
+
         // 删除
         async btndel(context,id){
             let re = await get("/customer/deleteById?id="+id);

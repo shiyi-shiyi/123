@@ -3,18 +3,12 @@
     <van-nav-bar
   title="地址"
   left-text="返回"
-  right-text="按钮"
+  right-text="添加"
   left-arrow
   @click-left="onClickLeft"
-  @click-right="onClickRight"
+  @click-right="xingzendizhi"
 />
-    {{address}}
-    <van-address-list
-    v-model="chosenAddressId"
-    :list="address"
-    @add="onClickLeft"
-    @edit="onClickLeft"
-    />
+<briup-address-item v-for="x in Idaddress" :data="x" :name="user.name" :key="x.id" :upd="bianjiaddress" :del="shanchuaddress"/>
 
 </div>
 </template>
@@ -25,27 +19,38 @@ import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 export default {
   data() {
     return {
-      chosenAddressId: '1',
-      list: [],
-      q:"26"
+      user:"",
     }
   },
   created(){
-      this.chazhaodizhi(this.q)
-    //   this.list.name = this.address.province
+    this.user = this.info
+    // console.log("aaaaa",this.user.id)
+    this.chazhaodizhi(this.user.id)
   },
   computed:{
-    ...mapState("address",["address"])
-
+    ...mapState("denglu",["token","info"]),
+    ...mapGetters("address",["Idaddress"]),
+    ...mapGetters("denglu",["getinfo"]),
   },
   methods: {
-    ...mapActions("address",["chazhaodizhi"]),
+    ...mapActions("address",["chazhaodizhi","deleteaddress"]),
+    // 返回
     onClickLeft() {
       this.$router.go(-1)
     },
-    onClickRight() {
-      alert("aaa")
-    }
+    // 新增地址
+    xingzendizhi(){
+      this.$router.push({path:"/addaddress",query:{title:"添加地址",id:this.user.id}})
+    },
+    // 删除地址
+    shanchuaddress(v){
+      // this.deleteaddress(v)
+    },
+    // 修改地址
+    bianjiaddress(v){
+      this.$router.push({path:"/addaddress",query:{title:"修改地址",address:this.Idaddress}})
+    },
+
 
   }
 }

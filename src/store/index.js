@@ -9,18 +9,18 @@ import customer from "./customer"
 import product from "./product"
 import address from "./address"
 import denglu from "./denglu"
-import bendishujuku from "./bendishujuku"
 import wode from "./wode"
+import orderok from "./orderok"
 
 export default new Vuex.Store({
     modules:{
       denglu,
-      // wode,
+      wode,
       address,
       order,
       category,
       customer,
       product,
-      bendishujuku,
+      orderok,
     }
 })

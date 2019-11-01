@@ -11,6 +11,7 @@
         :key="v.id"
         :icon="v.icon"
         :text="v.name"
+        @click="clickcategory(v)"
       />
     </van-grid>
   </div>
@@ -26,13 +27,19 @@ export default {
   },
   created(){
     this.vantchongzai()
-    console.log(this.$route.query.data)
+    this.tokeninfo(this.token) 
+    // console.log(this.$route.query.data)
   },
   computed:{
-    ...mapState("category",["vcategory"])
+    ...mapState("category",["vcategory"]),
+    ...mapState("denglu",["token"])
   },
   methods:{
     ...mapActions("category",["vantchongzai"]),
+    ...mapActions("denglu",["tokeninfo"]),
+    clickcategory(v){
+    this.$router.push({path:"/categoryproduct",query:{cat:v}})
+    }
   }
 }
 </script>
