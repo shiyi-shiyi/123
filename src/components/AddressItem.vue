@@ -33,7 +33,7 @@ export default {
   margin: .5em 1em;
   padding: .5em;
   border-radius: 5px;
-  background: #ffffff;
+  background: #e6dede;
 }
 .address_item .xing {
   width:3em;

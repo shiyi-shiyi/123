@@ -25,11 +25,11 @@ export default {
         // 通过地址id删除地址
         async deleteaddress(context,id){
             let re = await get("/address/deleteById?id="+id);
+            return re
         },
         // 添加修改地址
         async editaddress(context,from){
             let re = await post("/address/saveOrUpdate",from);
-            // console.log("aaaass",re)
         },
     }
 }

@@ -9,7 +9,7 @@
         <van-col :span="18" class="line-right">
           <div class="label">服务地址</div>
           <div>
-            {{addresses}}
+            {{address[0]}}
           </div>
         </van-col>
       </van-row>
@@ -22,7 +22,7 @@
           <div class="label">订单详情</div>
           <div>
            
-            <van-row v-for="line of orderLines.values()" :key="line.productId">
+            <van-row v-for="line of myorder.values()" :key="line.productId">
               <van-col :span="8">{{line.productName}}</van-col>
               <van-col :span="4">￥{{line.price}}</van-col>
               <van-col :span="4">x{{line.number}}</van-col>
@@ -31,7 +31,7 @@
             
             <van-row style="border-top:1px dotted #ededed">
               <van-col :span="16"></van-col>
-              <van-col :span="8">￥{{total}}</van-col>
+              <van-col :span="8">￥{{rest}}</van-col>
             </van-row>
             
           </div>
@@ -71,29 +71,48 @@
   </briup-fulllayout>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions ,mapMutations} from 'vuex';
 export default {
+  data(){
+    return {
+      user:"",
+      rest:0
+    }
+  },
   created(){
     // 查询所有地址
-    this.findAllAddresses()
+    this.user = this.info
+    this.chazhaodizhi(this.user.id)
+    this.jszj()
   },
   computed:{
-    ...mapState('shopcar',['orderLines']),
-    ...mapGetters('shopcar',['total']),
-    ...mapState('address',['addresses'])
+    ...mapState("denglu",["token","info"]),
+    ...mapState('orderok',['myorder']),
+    ...mapGetters('orderok',['myorderprice']),
+    ...mapState('address',['address'])
   },
   methods:{
-    ...mapActions('address',['findAllAddresses']),
-    ...mapActions('order',['saveOrder']),
+    ...mapActions("address",["chazhaodizhi"]),
+    ...mapMutations("orderok",["clearshopcar"]),
+    
+    ...mapActions('orderok',['placeorder']),
+    // 计算总价
+    jszj(){
+      for(let line of this.myorder.values()){
+        this.rest += line.price*line.number
+      }
+    },
     // 确认订单，保存订单
     confirmOrderHandler(){
-      this.saveOrder()
+
+      this.placeorder()
       .then((response)=>{
         this.$notify({ 
           type: 'success', 
           message: response.statusText 
         });
-        this.$router.push({path:'/manager/order'})
+        this.clearshopcar()
+        this.$router.go(-1)
       })
     }
   }

@@ -18,10 +18,7 @@ const routes = [
         path: 'wode',
         component: ()=>import('../pages/manager/wode'),
       },
-      {
-        path: 'shopcar',
-        component: ()=>import('../pages/manager/shopcar'),
-      },
+      
       {
         path: 'dingdan',
         component: ()=>import('../pages/manager/dingdan.vue')
@@ -37,12 +34,16 @@ const routes = [
     component: ()=>import('../pages/manager/address.vue')
   },
   {
-    path: '/categoryproduct',
-    component: ()=>import('../pages/manager/categoryproduct.vue')
+    path: '/addproduct',
+    component: ()=>import('../pages/manager/addproduct.vue')
   },
   {
     path: '/addaddress',
     component: ()=>import('../pages/manager/addaddress.vue')
+  },
+  {
+    path: '/shopcar',
+    component: ()=>import('../pages/manager/shopcar')
   },
 ]
 

@@ -58,16 +58,12 @@ export default {
         this.allorder()
         .then((re)=>{
           this.order= re.filter((item)=>item.customerId===userId)
-
           this.daipaidan= re.filter((item)=>item.customerId===userId && item.status==="待派单" )
-
           this.daijiedan= re.filter((item)=>item.customerId===userId && item.status==="待接单" )
-
           this.yiwancheng= re.filter((item)=>item.customerId===userId && item.status==="已完成" )
         })
       }) 
     },
-
   }
 }
 </script>

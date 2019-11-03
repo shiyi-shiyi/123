@@ -26,7 +26,12 @@ export default {
     }
   },
   created(){
+  // app信息加载 使状态机存储数据
+    // 查栏目
     this.vantchongzai()
+    // 查地址
+    // this.chazhaodizhi(this.user.id)
+    // 查用户信息
     this.tokeninfo(this.token) 
     // console.log(this.$route.query.data)
   },
@@ -35,10 +40,11 @@ export default {
     ...mapState("denglu",["token"])
   },
   methods:{
+    // ...mapActions("address",["chazhaodizhi"]),
     ...mapActions("category",["vantchongzai"]),
     ...mapActions("denglu",["tokeninfo"]),
     clickcategory(v){
-    this.$router.push({path:"/categoryproduct",query:{cat:v}})
+    this.$router.push({path:"/addproduct",query:{cat:v}})
     }
   }
 }

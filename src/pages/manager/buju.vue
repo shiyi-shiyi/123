@@ -1,7 +1,7 @@
 <template>
   <div id="buju">
     <router-view></router-view>
-    <div>
+    <div class="bj">
       <van-tabbar v-model="active" @change="changehandler">
         <van-tabbar-item icon="home-o" name="/buju/shouye">首页</van-tabbar-item>
         <van-tabbar-item icon="cart-o" name="/buju/dingdan">订单</van-tabbar-item> 

@@ -1,7 +1,8 @@
 <template>
-<div id="categoryporduct">
+<div id="addproduct">
   <div class="cate_content">
     <van-nav-bar title="产品" left-text="返回"  left-arrow @click-left="onClickLeft"/>
+    <!-- {{myorderprice}} -->
     
     <van-tree-select
     height="100%"
@@ -12,12 +13,12 @@
       <template slot="content">
         <briup-product-item v-for=" v in contents" :data="v" :key="v.id" ></briup-product-item>
       </template>
-
     </van-tree-select>
     <van-submit-bar
-      :price="3050"
+      :price="myorderprice*100"
       button-text="确认订单"
-      @click="toshopcar"
+      @submit="toshopcar"
+      :decimal-length="0"
     />
       <!-- @submit="onSubmit" -->
   </div>
@@ -31,20 +32,19 @@ export default {
     return {
       items:[],
       activeIndex: 0,
-      lanmu:{},
+      // lanmu:{},
       contents:[],
     }
   },
   created(){
     // 栏目id
-    this.lanmu = this.$route.query.cat
+    // this.lanmu = this.$route.query.cat
     this.arrayvcategory()
     this.czfys()
     // console.log(this.categoryindex(this.lanmu))
 
   },
   computed:{
-      
     ...mapState("orderok",["demo","prices","myorder"]),
     ...mapState("category",["vcategory"]),
     // ...mapGetters("category",["categoryindex"]),
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     ...mapActions("product",["czfys"]),
-    ...mapMutations("orderok",["editmyorder"]),
+    ...mapMutations("orderok",["clearshopcar"]),
 
     // 渲染左侧
     arrayvcategory(){
@@ -62,36 +62,27 @@ export default {
           this.items.push({"text":item.name,id:item.id})
       })
     },
-    //订单部分
-    myorderpricehandler(v){
-      this.editmyorder(v)
-      console.log(this.myorder)
-      console.log("prices",this.myorderprice)
-    },
-    // 点击左侧
+    // 点击左侧导航
     activeIndexhandlr(a){
         this.activeIndex = this.items[a].id
         this.contents = this.categoryporduct(this.items[a].id)
     },
-
     // 返回
     onClickLeft() {
+      this.clearshopcar()
       this.$router.go(-1)
     },
     // 到shopcar
     toshopcar(){
-      this.$router(path:"/shopcar")
+      this.$router.push({path:"/shopcar"})
     }
-
   }
 }
 </script>
-
 <style>
 .cate_content {
     height: 100%;
 }
-
 #categoryporduct{
     position: absolute;
     top: 0;

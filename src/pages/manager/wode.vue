@@ -31,7 +31,6 @@ export default {
   },
   computed:{
     ...mapState("denglu",["token","info"]),
-    // ...mapState("category",["vcategory"])
   },
   methods:{
     ...mapActions("denglu",["login","tokeninfo","logout"]),

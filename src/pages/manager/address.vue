@@ -24,7 +24,6 @@ export default {
   },
   created(){
     this.user = this.info
-    // console.log("aaaaa",this.user.id)
     this.chazhaodizhi(this.user.id)
   },
   computed:{
@@ -44,7 +43,14 @@ export default {
     },
     // 删除地址
     shanchuaddress(v){
-      // this.deleteaddress(v)
+      this.deleteaddress(v)
+      .then((response)=>{
+        this.$notify({ 
+          type: 'success', 
+          message: response.statusText 
+        });
+        this.chazhaodizhi(this.user.id)
+      })
     },
     // 修改地址
     bianjiaddress(v){
@@ -57,5 +63,7 @@ export default {
 </script>
 
 <style>
-
+.van-nav-bar{
+  background-color: rgb(239, 242, 245)
+}
 </style>
