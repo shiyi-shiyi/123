@@ -1,7 +1,10 @@
 <template>
   <div id="denglu">
       <div class="kuang">
-
+        <vant-row class="">
+          <div span="24" class="biaoti">
+            网购app
+          </div>
 <van-cell-group class="dl">
   <van-field
     v-model="yonghu.username"
@@ -20,6 +23,9 @@
     required/>
   <van-button type="primary" size="large" @click="dl">登录</van-button>
 </van-cell-group>
+
+        </vant-row>
+
       </div>
   </div>
 </template>
@@ -65,18 +71,26 @@ export default {
 </script>
 
 <style>
+.biaoti{
+  text-align: center;
+  color: #7c775b;
+  font-size: 2rem;
+  padding:5rem;
+}
 .kuang{
   position: absolute;
   right: 0;
   left: 0;
   bottom: 0;
   top: 0;
-  background:url('../assets/denglubeijing.jpg') no-repeat center;
+  background:url('../assets/dlbj.jpg') no-repeat center;
+  padding:1rem
   /* background:#bfc4cc; */
 }
 .dl{
   position: relative;
-  top:40%;
+  top:15%;
 
 }
+
 </style>

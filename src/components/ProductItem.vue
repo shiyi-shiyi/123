@@ -28,7 +28,7 @@ export default {
     numberChangeHandler(val){
       let orderLine = {
         productId:val.id,
-        // productName:val.name,
+        productName:val.name,
         price:val.price,
         number:val.number
       }
