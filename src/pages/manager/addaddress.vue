@@ -12,7 +12,7 @@
     <van-field
       v-model="from.province"
       type="text"
-      label="省份province"
+      label="省份"
       placeholder=""
       required
       :border="true"
@@ -20,7 +20,7 @@
     <van-field
       v-model="from.city"
       type="text"
-      label="城市city"
+      label="城市"
       placeholder=""
       required
       :border="true"
@@ -28,7 +28,7 @@
     <van-field
       v-model="from.area"
       type="text"
-      label="详细地址area"
+      label="详细地址"
       placeholder=""
       required
       :border="true"
@@ -36,7 +36,7 @@
     <van-field
       v-model="from.address"
       type="text"
-      label="地址address"
+      label="地址"
       placeholder=""
       required
       :border="true"
@@ -44,7 +44,7 @@
     <van-field
       v-model="from.telephone"
       type="tel"
-      label="电话telephone"
+      label="电话"
       placeholder=""
       required
       :border="true"

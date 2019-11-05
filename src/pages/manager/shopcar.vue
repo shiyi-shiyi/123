@@ -9,7 +9,7 @@
         <van-col :span="18" class="line-right">
           <div class="label">服务地址</div>
           <div>
-            {{address[0]}}
+            {{address[0].province}} {{address[0].city}} {{address[0].area}} {{address[0].address}}
           </div>
         </van-col>
       </van-row>
